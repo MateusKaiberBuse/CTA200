@@ -1,0 +1,90 @@
+    1  exit
+    2  /cita/local/bin/passwd 
+    3  exit
+    4  ls
+    5  pwd
+    6  history
+    7  ls -la
+    8  pwd
+    9  whoami
+   10  ls
+   11  ls -la .
+   12  ls -la.dbus
+   13  ls -la .dbus
+   14  dbus
+   15  gfortran --version
+   16  Host cita_gw
+   17  hostname gw.cita.utoronto.ca
+   18  ls
+   19  ls -ld
+   20  ls -a
+   21  ls -l
+   22  cd
+   23  cd cita
+   24  cd CITA
+   25  cd scratch-lustre
+   26  cosmo1.cita.utoronto.ca:6
+   27  python
+   28  module
+   29  module load python
+   30  python
+   31  cd /mnt/scratch-lustre/mbuse
+   32  mkdir CTA200_2024
+   33  ls
+   34  cd /mnt/scratch-lustre/mbuse/CTA200_2024
+   35  mkdir assignment1
+   36  ls
+   37  assignment1mv assignment_1
+   38  mv
+   39  mv --help
+   40  rmvdir assignment1
+   41  rmdir assignment1
+   42  ls
+   43  mkdir assignment_1
+   44  ls
+   45  touch README.md
+   46  ls
+   47  vi README.md
+   48  cd /home/murray
+   49  ls
+   50  find Hello_world.c
+   51  cp Hello_world.c
+   52  cp Hello_world.c /mnt/scratch-lustre/mbuse/CTA200_2024/assignment_1
+   53  cp Hello_world.py /mnt/scratch-lustre/mbuse/CTA200_2024/assignment_1
+   54  cd /mnt/scratch-lustre/mbuse/CTA200_2024/assignment_1
+   55  ls
+   56  mv Hello_world.c Hello_world_buse.c
+   57  mv Hello_world.py Hello_world_buse.py
+   58  ls
+   59  gcc Hello_world_buse.c
+   60  gcc Hello_world_buse.c -o Hello_world.x
+   61  ls
+   62  rm a.out
+   63  ls
+   64  Hello_world.x
+   65  ./Hello_world.x.run
+   66  Hello_world.x.run
+   67  run Hello_world.x
+   68  .\Hello_world.x
+   69  ls
+   70  .\Hello_world
+   71  ./Hello_world.x
+   72  ./Hello_world_buse.py
+   73  chmod +x Hello_world_buse.py
+   74  ./Hello_world_buse.py
+   75  vi Hello_world_buse.py
+   76  head Hello_world_buse.py
+   77  python
+   78  python Hello_world_buse.py 
+   79  vi Hello_world_buse.py
+   80  vi Hello_world_buse.c
+   81  ./Hello_world.x
+   82  vi Hello_world_buse.c
+   83  gcc Hello_world_buse.c -o Hello_world.x
+   84  ./Hello_world.x
+   85  ./Hello_world.x > output_c.txt
+   86  python ./Hello_world_buse.py > output_py.txt
+   87  ls
+   88  vi output_c.txt
+   89  vi output_py.txt
+   90  history > history.txt
