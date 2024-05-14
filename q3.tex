@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{wrapfig}
+\usepackage{hyperref}
+
+\title{Assignment 3: Question 3}
+\author{Mateus Buse}
+\date{May 2024}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+
+\maketitle
+
+\section{Methods}
+\subsection{Question 1}
+
+We first define the complex plane $c = x + iy$,
+where $-2 < x < 2$ and $-2 < y < 2$. Then we define the complex recursive function $z_{i+1} = z_{i} + c$ where $z_{0} = 0$.
+
+We then iterate over the complex function on the plane defined. Some points remained bounded in absolute value $|z|^2 = \Re(z)^2 + \Im(z)^2$, while other points diverged to infinity. We visualized this phenomenon by plotting the points that were bounded in absolute value and the points that diverged.
+
+Additionally, we expressed the diverging points with a color map that indicates at which iteration the given point diverged. These results can be found in the Results section. This was performed by verifying if each point on the complex plane diverged ($|z|^2 > 4$). If the point diverged we assigned a corresponding number to it, indicating the number of iterations that it took to diverge. The converging points were assigned a value of zero.
+        
+\subsection{Question 2}
+
+We first define the Lorenz differential equations as:
+
+\begin{eqnarray}
+\dot X &=& -\sigma(X-Y)\\
+\dot Y &=& rX -Y - XZ\\
+\dot Z &=& -bZ + XY
+\end{eqnarray}
+
+Edward Lorenz used these equations to model the properties of a thin atmosphere heated from below. Here the parameters are $\sigma$, the ratio of the kinematic viscosity to the thermal diffusivity (the Prandtl number),  $r$, which depends on the vertical temperature difference between the top and bottom of the atmosphere (the Rayleigh number), and b, which is a dimensionless length scale.
+
+We coded the system of differential equations by defining a function in Python. The function takes as parameters a time interval, the initial conditions, and the physical parameters of the system. We then used the ODE solver: "solve$\_$ivp" to find the solutions of the system.
+
+We performed this for different initial conditions and then compared the results. During the calculations, we utilized the physical parameters: [$\sigma, r, b$] = [10., 28, 8./3.]
+
+\section{Results}
+\subsection{Question 1}
+First, we displayed the diverging and converging points on the complex plane as two different colors, the resulting plot is as follows:
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{complex.png}
+\end{wrapfigure}
+
+Here the area of diverging points corresponds to a circle, that is because we defined every point bounded by absolute value $|z|^2 = \Re(z)^2 + \Im(z)^2$ as converging. This corresponds to a circle in the complex plane. The converging points are expressed in white and the diverging points in black. Here the $y$ axis corresponds to the imaginary axis, and the $x$ axis corresponds to the real axis.
+
+Additionally, we displayed the points that diverged as a function of the number of iterations. The resulting image corresponds to the fractal known as the Mandelbrot set.
+
+\begin{wrapfigure}{l}{0.3\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.3\textwidth]{complex_plane.png}
+\end{wrapfigure}
+
+ Here the points that converged when the program reached the maximum number of iterations are expressed in white. The remaining points are expressed following the color map scheme.
+
+Similarly, the $y$ axis represents the imaginary axis of the complex plane, while the $x$ axis represents the real axis.
+
+This plot was produced with a maximum number of iterations of one hundred, and by accounting for the number of iterations that a given point diverged, we can observe more interesting shapes.
+
+\subsection{Question 2}
+
+First, we express the numerical solution of the convection equations as a function of number of iterations.
+
+\begin{wrapfigure}{r}{0.4\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.4\textwidth]{q2.png}
+\end{wrapfigure}
+
+Here we show the solution $Y$ as a function of time. The upper curve shows the first thousand iterations, the middle curve displays the second thousand iterations, and the lower curve shows the third thousand iterations.
+
+With this, we can clearly observe how the solution to Lorenz equations evolves with time and within different time intervals.
+
+Note that Edward Lorenz performed the same observations in his original paper
+\href{https://journals.ametsoc.org/view/journals/atsc/20/2/1520-0469_1963_020_0130_dnf_2_0_co_2.xml}{(Lorenz, 1963)}
+
+Lorenz noted that $Y$ after reaching its first peak and approaching equilibrium, the solution undergoes systematic amplified oscillations until it reaches a critical state. After this critical state, $Y$ changes sign at irregular intervals. We also observed these phenomena in our analysis. The behavior of the $Y$ solution can be observed in Figure 1, on the right.
+
+\begin{wrapfigure}{r}{0.35\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.35\textwidth]{q2_fig2.png}
+\end{wrapfigure}
+
+After that, we displayed the projections of the $XY$ and $YZ$ planes in phase space of the trajectory corresponding to a portion of the trajectory in between a thousand and two thousand iterations. 
+
+Lorenz also expressed these two plots in his original paper and he observed how the trajectory evolves around the states of steady convection.
+
+Note that to perform Figure 1 and Figure 2 we utilized a set array of initial conditions  $W_0=[0., 1., 0.]$. The properties of the solution to the system of differential equations heavily depend on the initial conditions provided to the program. These are the same boundary conditions that Lorenz utilized during his observations.
+
+We observed the dependence on the initial conditions by providing a different set of conditions and finding a different solution to the system.
+
+\begin{wrapfigure}{l}{0.35\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.35\textwidth]{q2_part2.png}
+\end{wrapfigure}
+
+Here we utilized the initial conditions $W_0=[0., 100000001., 0.]$, a small deviation from the original conditions used.
+
+The graph on the left displays the distance between the points of the original solution and the new solution as a function of time.
+
+Here the distance is expressed in a logarithmic scale. As we can see the relationship approaches a line. This means that the distance and time follow an exponential growth relation. Thus a small error could lead in a large variation in the solutions, resulting in inaccurate predictions.
+
+\end{document}
