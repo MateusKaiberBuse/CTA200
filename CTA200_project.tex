@@ -1,0 +1,247 @@
+%% \listfiles
+\documentclass[apj]{emulateapj}
+%\documentclass[preprint2,12pt]{emulateapj}
+%% \usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{amssymb,amsmath}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{float}
+
+\singlespace
+
+%definitions
+\newcommand{\Msol}{${\rm M_{\sun}}$}
+
+
+%% Editing markup...
+\usepackage{color}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WARNING: This LaTeX block was generated automatically by authors.py
+% Do not change by hand: your changes will be lost.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% --------------------- Ancillary information ---------------------
+\shortauthors{Mateus Kaiber Buse}
+\shorttitle{Reionization and the 21cm line}
+\slugcomment{Draft: \today}
+
+
+\begin{document}
+
+\title{Reionization and 21cm line through Radiative Transfer Equation}
+ %% ---------
+ 
+\author{Mateus Kaiber Buse\altaffilmark{1}}
+\altaffiltext{1}{CITA, University of Toronto}
+ 
+\begin{abstract}
+The Dark Ages, Cosmic Dawn, and Epoch of Reionization are periods that mark a major transition in the universe´s history. These Epochs mark the transition of the Universe´s composition from neutral hydrogen gas to ionized hydrogen. We can infer information from this period in the Universe´s evolution by analyzing the 21cm line, emitted by neutral hydrogen, and the CMB radiation. We simulate the absorption and emission coefficients, as well as, the radiative transfer equations associated with the 21cm line emission and the CMB radiation. We perform tests to verify our program
+
+\end{abstract}
+
+\keywords{cosmology: Reionization --- 21cm Hydrogen line  }
+
+
+\section{Introduction}
+\label{sec:intro}
+The Dark Ages, the Cosmic Dawn, and the Epoch of Reionization constitute a major transition in cosmic evolutionary history, marking the Universe´s shift from being filled with neutral hydrogen (HI) gas, to becoming mainly ionized plasma. Studying the early Universe can be challenging as no luminous structure had yet been formed. The 21-cm line emitted from neutral hydrogen becomes a vital tool in understanding the physical mechanisms of the early Universe.
+
+\subsection{Cosmic History}
+The Cosmic Evolutionary History is separated and classified into different epochs. Approximately 380,000 years after the Big Bang, electrons and protons combined to form neutral hydrogen. This period is known as Recombination.
+
+The period following the Recombination period is called the Dark Ages. During the Dark Ages, the universe was mainly composed of neutral hydrogen gas, and the only photons emitted were through the process of decoupling (this radiation is observed today as the CMB) and the emission of the 21cm line. This period ranges from 380,000 years to 1 billion years.
+
+The Cosmic Dawn marks the end of the Dark Ages and the beginning of the Reionization period. During this time, the clouds of hydrogen started collapsing and forming the Universe´s first light sources (first stars, and galaxies). These light sources begin the process of Reionization by energizing the surrounding neutral hydrogen. The exact timing of the formation of the earliest generation of stars is still being researched, but it is believed that this process happened at some point around 200 to 500 million years. The reionization is estimated to have happened around 100 million to 1 billion years after the Big Bang (The exact timing is still being researched). This process led to the reionization of the entire Universe. 
+
+The peak of star formation then happened around 3 billion years after the Big Bang, followed by the formation of the solar system, around 9 billion years, and then the current epoch is at 13.8 billion years after the Big Bang. We tabulate the major epochs described as follows:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}m{2.8cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.8cm}|}
+\hline
+\textbf{Epoch} & \textbf{Redshift (\(z\))} & \textbf{Cosmic Time} \\
+\hline
+Dark Ages & \( 1100 > z > 30 \) & \( 380{,}000 \text{ years} - 100 \text{ million years} \) \\
+\hline
+Cosmic Dawn & \( 20 - 15 \) & \( 180 - 270 \text{ million years} \) \\
+\hline
+Reionization & \( 30 > z > 6 \) & \( 100 \text{ million years} - 1 \text{ billion years} \) \\
+\hline
+Star Formation Peak & \( \sim 2 \) & \( \sim 3 \text{ billion years} \) \\
+\hline
+Solar System Form. & \( \sim 0.5 \) & \( \sim 9 \text{ billion years} \) \\
+\hline
+Present Day & \( 0 \) & \( \sim 13.8 \text{ billion years} \) \\
+\hline
+\end{tabular}
+\caption{Major epochs in cosmic history, their redshifts, and cosmic time since the Big Bang.}
+\label{table:cosmic_history}
+\end{table}
+
+
+\subsection{21cm Hydrogen line}
+
+The 21cm radio signal depends on the density, velocity, and local spin temperature of the neutral hydrogen. By analyzing this line, we can infer information about the formation of the first cosmic structures, and with that, better understand the mechanisms that shaped the Universe´s development.
+
+The common method for calculating the 21-cm signals associated with the Dark Ages, the Cosmic Dawn, and the Epoch of Reionization uses the following equation:
+
+\begin{equation}{\label{eq1}}
+\begin{aligned}
+\delta T_{\mathrm{b}} & \approx \frac{T_{\mathrm{s}} - T_{\mathrm{r}}}{1+z} \tau_\nu \\
+& \approx 27 x_{\mathrm{H}1}\left(1 + \delta_{\mathrm{b}}\right)\left(\frac{\Omega_{\mathrm{b}} h^2}{0.023}\right) \left(\frac{0.15}{\Omega_{\mathrm{m}} h^2} \frac{1+z}{10}\right)^{1/2} \\
+& \quad \times \left(\frac{T_{\mathrm{s}} - T_{\mathrm{r}}}{T_{\mathrm{s}}}\right)\left[\frac{\partial_{\mathrm{s}} v_{\mathrm{r}}}{(1+z) H(z)}\right] \, \mathrm{mK}
+\end{aligned}
+\end{equation}
+
+Where $T_{\mathrm{s}}$ is the spin temperature of the neutral hydrogen, $T_{\mathrm{r}}$ is the brightness temperature of Cosmic Background Radiation (CMB), $\partial_{\mathrm{s}} v_{\mathrm{r}}$ is the gradient of proper velocity along the line of sight, and $\delta_{\mathrm{b}}$ is the fractional over-density in baryons. This equation was derived from the radiative transfer of the 21-cm line in the global universe. For the purposes of this project, we will only consider the radiative transfer in a local universe, that is, we will neglect the cosmic expansion.
+
+The cosmological line radiative transfer equation in the absence of scattering and cosmic expansion reads:
+\begin{center}
+\begin{equation}{\label{eq2}}
+\frac{\mathrm{d}I_{\mathrm{L}, \nu}}{\mathrm{d} s}= -\left(\kappa_{\mathrm{C}, \nu} + \kappa_{\mathrm{L}, \nu} \phi_\nu (1 - \Xi)\right) I_{\mathrm{L}, \nu} +\epsilon_{\mathrm{C},\nu}+\epsilon_{\mathrm{L}, \nu} \phi_\nu
+\end{equation}
+\end{center}
+
+Here, the subscripts "L" and "C" denote the line 21cm Hydrogen line and the CMB radiation respectively. The $I_{\mathrm{L}, \nu}$ is the specific intensity. $\kappa_{\mathrm{L}, \nu}$, and $\epsilon_{\mathrm{L}, \nu}$ correspond to the line absorption coefficient and emission coefficient respectively. $\phi_\nu$ is the normalized line-profile function. The term $\Xi$ is the factor for the stimulated emission and it is defined as $\Xi = (n_{u}g_{l})/(n_{l}g_{u})$, where $g_{u}/g_{l}$ is the degeneracy between the upper and lower level energy states.
+
+The line absorption and emission coefficients are calculated in a local rest frame as follows:
+
+\begin{equation}{\label{eq3}}
+\begin{aligned}
+\epsilon_{\mathrm{L}, \nu} & =\frac{h \nu_{\mathrm{ul}}}{4 \pi} n_{\mathrm{u}} A_{\mathrm{ul}},
+\end{aligned}
+\end{equation}
+\begin{equation}{\label{eq4}}
+\begin{aligned}
+\kappa_{\mathrm{L}, v} & =\frac{h \nu_{\mathrm{ul}}}{4 \pi} n_{\mathrm{l}} B_{\mathrm{lu}}=\frac{1}{8 \pi}\left(\frac{c}{\nu_{\mathrm{ul}}}\right)^2\left(\frac{g_{\mathrm{u}}}{g_{\mathrm{l}}}\right) n_{\mathrm{l}} A_{\mathrm{ul}},
+\end{aligned}
+\end{equation}
+
+where the subscripts "u" and "l" represent the upper and lower energy states, $\nu_{\mathrm{ul}}$ is the frequency of the 21cm line, and $A_{\mathrm{ul}}$ and $B_{\mathrm{ul}}$ are the Einstein´s emission and absorption coefficients.
+
+The 21-cm line is observed against a continuum background signal from the CMB. To determine the 21-cm signal we must perform a simultaneous analysis of the line radiative transfer and the radiative transfer of the continuum at the local universe:
+
+\begin{equation}{\label{eq5}}
+\frac{\mathrm{dI_{\mathrm{C}, \nu}}}{\mathrm{d} s}=-\kappa_{\mathrm{C}, \nu}\\{I_{\mathrm{C}, \nu}}+{\epsilon_{\mathrm{C}, \nu}}
+\end{equation}
+
+By analyzing the two lines we can apply the Rayleigh-Limit approximation and observe the differential brightness temperature:
+
+\begin{equation}{\label{eq6}}
+\delta T_{\mathrm{b}}=\left(I_{\mathrm{L}, \nu}-I_{\mathrm{C}, \nu}\right) \frac{(c / \nu)^2}{2 k_{\mathrm{B}}}
+\end{equation}
+
+\section{Methods}
+\label{sec:methods}
+\subsection{Cosmic evolution}
+Based on the data in Table \ref{table:cosmic_history}, we compress the cosmic history into a single day (24-hour period). Our results are expressed in the following table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{5cm}|}
+\hline
+\textbf{Epoch} & \textbf{Compressed Time (Hours)} \\
+\hline
+Dark Ages & 0.0087 h \\
+\hline
+Cosmic Dawn & 0.6131 h\\
+\hline
+Reionization & 0.9635 h \\
+\hline
+Peak of Star Formation &  5.2554 h\\
+\hline
+Solar System Formation & 15.7664 h \\
+\hline
+Present Day & 24 h \\
+\hline
+\end{tabular}
+\caption{Compressed cosmic history into a 24-hour time interval.}
+\label{table:cosmic_history_compressed}
+\end{table}
+
+To construct this table, we calculated the relative time percentage of each epoch and then applied each percentage value to a 24-hour time interval. Note that we assumed that the Big Bang corresponds to hour zero and that the present day corresponds to hour 24.
+
+We, additionally, analyzed the relationship between cosmic age and redshift. We utilized the data from Table \ref{table:cosmic_history} and Planck Collaboration 2020. The analysis is expressed in the following plot:
+
+\begin{figure}[H]
+\includegraphics[width=1.05\columnwidth]{cosmological_history.pdf}
+\caption{Relationship between Redshift and the Cosmological Age of the major epochs in the cosmological evolution history.\vspace{3mm}}
+\label{fig:cosmo_history}
+\end{figure}
+
+Here the major epochs are labeled in the plot. As we can see redshift and cosmological age do not follow a linear relationship.
+
+\subsection{Cosmological Radiative Transfer}
+
+Our goal is to find numerical solutions to the line radiative transfer equation and the continuum radiative transfer equation for the local Universe. To perform this, we first simulated the 21cm line emission and absorption coefficients (equations \eqref{eq3} and \eqref{eq4} respectively) in a Python script.
+
+Additionally, it is important to note that the ratio between the number density of the upper and lower energy states is related to the spin temperature as follows: 
+
+\begin{equation}
+\begin{aligned}
+\frac{1}{3}\left(\frac{n_{\mathrm{u}}}{n_{\mathrm{l}}}\right)=\exp \left(-\frac{\Delta E_{\mathrm{ul}}}{k_{\mathrm{B}} T_{\mathrm{s}}}\right)=\exp \left(-\frac{T_{\star}}{T_{\mathrm{s}}}\right)
+\end{aligned}
+\end{equation}
+
+where $T_{\mathrm{s}}$ is the spin temperature $\Delta E_{\mathrm{ul}}$ and is the energy difference between the two states "u" and "l". This relation follows from the fact that in a two-level system in thermal equilibrium, the relative population of the two states is specified by the Boltzmann factor:
+
+\begin{equation}
+\begin{aligned}
+\frac{n_{\mathrm{b}}}{n_{\mathrm{a}}}=\frac{g_{\mathrm{b}}}{g_{\mathrm{a}}} \exp \left(-\frac{\Delta E_{\mathrm{ba}}}{k_{\mathrm{B}} T}\right)
+\end{aligned}
+\end{equation}
+
+With this, we can now create Python functions to define the line radiative transfer equation and the continuum radiative transfer equation appropriate for the local universe in a Python script (equations \eqref{eq2} and \eqref{eq5} respectively). Additionally, we can define the differential brightness temperature \eqref{eq6}. Note that, this quantity is measured in $K$.
+
+\subsection{Code Verification}
+We verified the functions we defined by applying an ODE solver and observing the behavior of the functions by changing their input parameters. Following the theory, if the absorption and emission coefficients are equal to zero, the change in specific intensity, in turn, should also be zero. Now assuming that only a coefficient of emission is present and equal to 1, the change in specific intensity should be equal to the path length.
+
+The following plot demonstrates the case where the coefficient of absorption is equal to zero:
+
+\begin{figure}[H]
+\includegraphics[width=1.05\columnwidth]{LRT_and_CRT_test.pdf}
+\caption{Test for Line Radiative Transfer Equation and Continuum Radiative Transfer Equation when absorption coefficient is equal to zero.\vspace{3mm}}
+\label{fig:test1}
+\end{figure}
+
+The resulting differential brightness temperature was also determined for the case where the absorption coefficient is zero.
+
+\begin{figure}[H]
+\includegraphics[width=1.05\columnwidth]{diff_bright_test.pdf}
+\caption{Test for Differential Brightness Temperature when absorption coefficient is zero.\vspace{3mm}}
+\label{fig:test2}
+\end{figure}
+
+Both Figures \ref{fig:test1} and \ref{fig:test2} demonstrate the expected behavior when the line and continuum absorption coefficients are equal to zero.
+
+\subsection{Angular Distance and Redshift}
+
+If we plan to model the radiative transfer equations in the global universe, we must consider how the angular distance and the frequency of the 21cm line depend on redshift. The following plot demonstrates this relation. The frequency of the 21cm line was corrected by a factor of $(1+z)^{-1}$. The second axis shows how the frequency of the emission line changes with redshift.
+
+\begin{figure}[H]
+\includegraphics[width=1.05\columnwidth]{ang_dist.pdf}
+\caption{Shows the relationship between angular distance and redshift. The second axis corresponds to the frequency of the 21cm line and how it changes based on each redshift value.\vspace{3mm}}
+\label{fig:ang_dist}
+\end{figure}
+
+As we can see, the angular distance peaks in between redshift 0 and 10, after that initial peak it decreases. The corrected frequencies of the 21cm line are expressed with axis 2.
+
+
+
+
+%\acknowledgments
+
+%% %% \bibliographystyle{act}
+%% \bibliographystyle{apj}
+
+%% \bibliography{lenscib_refs.bib,apj-jour}
+
+
+
+\end{document}
